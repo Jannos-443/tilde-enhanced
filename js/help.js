@@ -83,11 +83,11 @@ class Help {
   
   
       const commandListWithIcons =  this._commands
-        .map(({ category, name, key, url, icon }, i) => {
-          const iconEl = CONFIG.iconExtension !== 'svg'
-                       ? `<img src='assets/icons/${icon}.png' height = 28px center style="filter: invert(${invertValue});">`
-                       : `<img src='assets/icons/${icon}.svg' onload="SVGInject(this)" height = 28px center style="fill: ${fgcolor};">`
-  
+        .map(({ category, name, key, url, icon, iconSource }, i) => {
+          const iconEl = iconSource === 'simpleicons'
+            ? `<img src="https://cdn.simpleicons.org/${icon}" alt="${icon}" style="height: 20px; vertical-align: middle; display: inline-block;" />`
+            : `<i class="mdi mdi-${icon}" style="font-size: 20px;"></i>`;
+
           if (category === currentCategory) {
             return `
               <style>
